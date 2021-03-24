@@ -15,7 +15,7 @@ class LocalCommand extends Command
     public function handle()
     {
         $path = config('local-config.path') ?? config('local-config.default_path');
-        Local::create($path,$this->user())
+        Local::create($path, $this->user())
             ->onOutput(function ($type, $line) {
                 $this->displayOutput($type, $line);
             })->execute($this->command());
@@ -33,6 +33,7 @@ class LocalCommand extends Command
         if ($this->option('artisan')) {
             $command = "php artisan {$command}";
         }
+
         return $command;
     }
 
